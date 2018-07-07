@@ -121,10 +121,10 @@ def button_callback(button):
     GPIO.setup(lookup[button][0], GPIO.OUT)
     
     # register callback for button
-    GPIO.add_event_detec(button, GPIO.BOTH, callback=button_callback)
+    GPIO.add_event_detect(button, GPIO.BOTH, callback=button_callback)
     
     # start pwm for motor
-    lookup[button][2] = GPIO.pwm(motor, FREQUENCY)
+    lookup[button][2] = GPIO.PWM(lookup[button][0], FREQUENCY)
     lookup[button][2].start(DEGREE_90)
   
 def exit():
