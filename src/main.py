@@ -9,8 +9,8 @@ X_MOTOR = 12
 Y_MOTOR = 13
 Z_MOTOR = 18
 # button channel
-RIGHT    = 2
-LEFT     = 3
+RIGHT    = 5
+LEFT     = 6
 FORWARD  = 4
 BACKWARD = 17
 CLAW     = 27
@@ -30,6 +30,7 @@ lookup = { RIGHT    : [X_MOTOR, DEGREE_180, 0],
 
 def init():
   # configure gpio
+  #GPIO.cleanup()
   GPIO.setmode(GPIO.BCM)
   
   # configure for reset button
@@ -54,16 +55,18 @@ def exit():
   GPIO.cleanup()
 
 def reset():
-  lookup[Z_MOTOR][2].ChangeDutyCycle(DEGREE_180)
+  print('reset!')
+  lookup[CLAW][2].ChangeDutyCycle(DEGREE_180)
   time.sleep(1.5)
-  lookup[X_MOTOR][2].ChangeDutyCycle(DEGREE_90)
+  lookup[RIGHT][2].ChangeDutyCycle(DEGREE_90)
   time.sleep(1.5)
-  lookup[Y_MOTOR][2].ChangeDutyCycle(DEGREE_90)
+  lookup[FORWARD][2].ChangeDutyCycle(DEGREE_90)
   time.sleep(1.5)
 
 def button_callback(button):
+  print('button {} call back.'.format(button))
   if GPIO.input(button): # RISING EDGE -> MOTOR START
-    if button != 27:
+    if button != CLAW:
       lookup[button][2].ChangeDutyCycle(lookup[button][1])
     else:
       lookup[button][2].ChangeDutyCycle(DEGREE_0)
@@ -72,13 +75,14 @@ def button_callback(button):
       time.sleep(1.5)
     
   else: # FALLING EDGE -> MOTOR STOP
-    if button != 27:
+    if button != CLAW:
       lookup[button][2].ChangeDutyCycle(0)
 
 def main():
   init()
-  
+  print('after init')
   while(1):
+    print('wait')
     GPIO.wait_for_edge(RESET, GPIO.RISING)
     timeout = GPIO.wait_for_edge(RESET, GPIO.FALLING, timeout=4500)
     if timeout is None:
