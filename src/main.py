@@ -1,26 +1,23 @@
 import threading as thread
 import RPi.GPIO as GPIO
 
-class button:
-  def __init__:
-    
-  def init():
-  
-  def exit():
-  
-  def 
+# global variable
+MOTOR_SPEED = 0.
+ZERO_OFFSET = [0., 0., 0.]
+POSITIVE_RANGE = [0., 0., 0.]
+NEGATIVE_RANGE = [0., 0., 0.]
+
 
 def init():
-
+  # configure gpio
+  
 def exit():
-
-
-def :
-
-
-
-
-class motor:
+  
+def button_callback(channel):
+  if GPIO.input(channel): # RISING EDGE -> MOTOR START
+    
+  else: # FALLING EDGE -> MOTOR STOP
+def motor():
   
 def main():
   
