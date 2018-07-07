@@ -1,11 +1,5 @@
-import threading as thread
 import RPi.GPIO as GPIO
 import time
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 510d3fa... need test
 
 # global variable
 # motor channel
@@ -13,13 +7,8 @@ X_MOTOR = 12
 Y_MOTOR = 13
 Z_MOTOR = 18
 # button channel
-<<<<<<< HEAD
 RIGHT    = 5
 LEFT     = 6
-=======
-RIGHT    = 2
-LEFT     = 3
->>>>>>> 510d3fa... need test
 FORWARD  = 4
 BACKWARD = 17
 CLAW     = 27
@@ -39,7 +28,6 @@ lookup = { RIGHT    : [X_MOTOR, DEGREE_180, 0],
 
 def init():
   # configure gpio
-<<<<<<< HEAD
   #GPIO.cleanup()
   GPIO.setmode(GPIO.BCM)
   
@@ -58,28 +46,6 @@ def init():
     # start pwm for motor
     lookup[button][2] = GPIO.PWM(lookup[button][0], FREQUENCY)
     lookup[button][2].start(DEGREE_90)
-=======
-class button:
-  def __init__:
-    
-  def init():
-  
-  def exit():
-  
-  def 
-
-def init():
-
-def exit():
-
-
-def :
-
-
-
-
-class motor:
->>>>>>> eb42955... add function
   
 def exit():
   for button, pwm in lookup_table.items():
@@ -108,63 +74,12 @@ def button_callback(button):
     
   else: # FALLING EDGE -> MOTOR STOP
     if button != CLAW:
-=======
-  GPIO.setmode(GPIO.BCM)
-  
-  # configure for reset button
-  GPIO.setup(RESET, GPIO.IN)
-  
-  # configure for control button
-  for button in lookup:
-    # set up for every channel
-    GPIO.setup(button, GPIO.IN)
-    GPIO.setup(lookup[button][0], GPIO.OUT)
-    
-    # register callback for button
-    GPIO.add_event_detect(button, GPIO.BOTH, callback=button_callback)
-    
-    # start pwm for motor
-    lookup[button][2] = GPIO.PWM(lookup[button][0], FREQUENCY)
-    lookup[button][2].start(DEGREE_90)
-  
-def exit():
-  for button, pwm in lookup_table.items():
-    pwm.stop()
-  GPIO.cleanup()
-
-def reset():
-  lookup[Z_MOTOR][2].ChangeDutyCycle(DEGREE_180)
-  time.sleep(1.5)
-  lookup[X_MOTOR][2].ChangeDutyCycle(DEGREE_90)
-  time.sleep(1.5)
-  lookup[Y_MOTOR][2].ChangeDutyCycle(DEGREE_90)
-  time.sleep(1.5)
-
-def button_callback(button):
-  if GPIO.input(button): # RISING EDGE -> MOTOR START
-    if button != 27:
-      lookup[button][2].ChangeDutyCycle(lookup[button][1])
-    else:
-      lookup[button][2].ChangeDutyCycle(DEGREE_0)
-      time.sleep(1.5)
-      lookup[button][2].ChangeDutyCycle(DEGREE_180)
-      time.sleep(1.5)
-    
-  else: # FALLING EDGE -> MOTOR STOP
-    if button != 27:
->>>>>>> 510d3fa... need test
       lookup[button][2].ChangeDutyCycle(0)
 
 def main():
   init()
-<<<<<<< HEAD
-  print('after init')
   while(1):
     print('wait')
-=======
-  
-  while(1):
->>>>>>> 510d3fa... need test
     GPIO.wait_for_edge(RESET, GPIO.RISING)
     timeout = GPIO.wait_for_edge(RESET, GPIO.FALLING, timeout=4500)
     if timeout is None:
