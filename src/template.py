@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 # global variable
+# This is the channel for the input buttons
 RIGHT    = 5
 LEFT     = 6
 FORWARD  = 13
