@@ -2,7 +2,6 @@ import RPi.GPIO as GPIO
 import time
 
 # global variable
-CRASH    = [False for i in range(4)]
 RIGHT    = 5
 LEFT     = 6
 FORWARD  = 13
