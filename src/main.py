@@ -11,7 +11,8 @@ DOWN     = 1
 RESET    = 7
 ENABLE   = 25
 
-# look up table: button_channel -> [motor_channel, direction, pwm]
+# look up table
+# button channel : [related channel]
 lookup = { RIGHT    : [4,  12],
            LEFT     : [17, 16],
            FORWARD  : [27, 20],
