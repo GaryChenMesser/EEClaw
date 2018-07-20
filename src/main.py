@@ -2,22 +2,22 @@ import RPi.GPIO as GPIO
 import time
 
 # global variable
-RIGHT    = 5
-LEFT     = 6
-FORWARD  = 13
-BACKWARD = 26
-UP       = 23
-DOWN     = 1
-RESET    = 7
+RIGHT    = 17
+LEFT     = 27
+FORWARD  = 22
+BACKWARD = 5
+UP       = 6
+DOWN     = 13
+RESET    = 19
 
 # look up table
 # input channel : output channel
-lookup = { RIGHT    : 4,
-           LEFT     : 17,
-           FORWARD  : 27,
-           BACKWARD : 22,
-           UP       : 8,
-           DOWN     : 24 }
+lookup = { RIGHT    : 26,
+           LEFT     : 18,
+           FORWARD  : 23,
+           BACKWARD : 24,
+           UP       : 25,
+           DOWN     : 12 }
 
 def init():
   # configure gpio
