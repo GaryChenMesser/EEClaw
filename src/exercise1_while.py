@@ -15,3 +15,4 @@ while True:
   while GPIO.input(channel) == GPIO.HIGH:
     pass
   print("我被放開了")
+  
