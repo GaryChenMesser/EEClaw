@@ -5,7 +5,7 @@ import time
 # 用來檢查事件的while可以每檢查一次就休息0.01秒，因為觸發按鈕的最短時間大概是1/10秒的數量級
 
 channel = 12
-GPIO.setmode(channel, GPIO.BCM)
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(channel, GPIO.IN)
 
 while True:

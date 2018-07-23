@@ -22,7 +22,7 @@ lookup = { RIGHT    : 26,
 def init():
   # configure gpio
   GPIO.setmode(GPIO.BCM)
-  
+  GPIO.setup(RESET, GPIO.IN) 
   # configure for control button
   for button in lookup:
     # set up for every channel

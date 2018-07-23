@@ -5,19 +5,20 @@ import time
 
 def my_callback(channel):
   if GPIO.input(channel):
-    print("Push down!")
+    print("我被按了")
   else:
-    print("Pull up!")
+    print("我被放開了")
 
 def main():
   channel = 12
-  GPIO.setmode(channel, GPIO.BCM)
+  GPIO.setmode(GPIO.BCM)
   GPIO.setup(channel, GPIO.IN)
 
-  GPIO.add_event_detect(channel, )
+  GPIO.add_event_detect(channel, GPIO.BOTH, callback=my_callback)
 
   while True:
-    time.sleep(1)
+    # time.sleep(1)
+    pass
 
 if __name__ == "__main__":
   main()
