@@ -28,8 +28,7 @@ def init():
     # set up for every channel
     GPIO.setup(button, GPIO.IN)
     
-    if button != RESET:
-      GPIO.add_event_detect(button, GPIO.BOTH, callback=move_callback)
+    GPIO.add_event_detect(button, GPIO.BOTH, callback=move_callback)
 
     GPIO.setup(lookup[button], GPIO.OUT)
 
